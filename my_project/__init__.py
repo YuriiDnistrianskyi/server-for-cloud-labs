@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_utils import database_exists, create_database
 from flask_jwt_extended import JWTManager
 from config import Config
+from flasgger import Swagger
 
 from my_project.auth.route import register_routes
 from my_project.additional_for_db.additional_for_db import create_triggers, create_procedures, create_functions
@@ -14,13 +15,14 @@ def create_app() -> Flask:
     app.config.from_object(Config)
 
     jwt = JWTManager(app)
+    swagger = Swagger(app)
 
     _init_db(app)
     register_routes(app)
 
-    create_triggers(app, db)
-    create_functions(app, db)
-    create_procedures(app, db)
+    # create_triggers(app, db)
+    # create_functions(app, db)
+    # create_procedures(app, db)
 
     return app
 

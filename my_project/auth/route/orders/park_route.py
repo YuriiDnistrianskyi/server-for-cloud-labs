@@ -14,8 +14,60 @@ def get_all_parks() -> Response:
 
 @park_bp.post('')
 def create_park() -> Response:
+    """
+        Create Park
+        ---
+        parameters:
+          - name: body
+            in: body
+            required: true
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Park"
+                password:
+                  type: number
+                  example: 1111
+                location:
+                  type: string
+                  example: "Lviv"
+                maxVisit:
+                  type: number
+                  example: 100
+                attractionNumber:
+                   type: number
+                   example: 1000
+                age:
+                   type: number
+                   example: 5
+        response:
+          201:
+            description: Park created
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Park"
+                password:
+                  type: number
+                  example: 1111
+                location:
+                  type: string
+                  example: "Lviv"
+                maxVisit:
+                  type: number
+                  example: 100
+                attractionNumber:
+                   type: number
+                   example: 1000
+                age:
+                   type: number
+                   example: 5
+        """
     data = request.get_json()
-
     park = Park.create_from_dto(data)
     park_controller.create_park(park)
     return make_response(jsonify(park.put_into_dto()), HTTPStatus.CREATED)
