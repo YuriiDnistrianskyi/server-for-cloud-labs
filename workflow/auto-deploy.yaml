@@ -1,0 +1,27 @@
+name: auto-deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jods:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        user: actions/checkout@v3
+
+      - name: Deploy
+        user: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.EC2_HOST}}
+          username: ${{ secrets.EC2_USER}}
+          key: ${{ secrets.EC2_SHH_KEY}}
+          script: |
+            cd /home/ubuntu/server-for-cloud-labs
+            git pull origin main
+            sudo systemctl restart 
+            echo "git deploy"
+            
