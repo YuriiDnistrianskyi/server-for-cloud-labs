@@ -1,0 +1,12 @@
+jwt:
+  token_location: ["headers"]
+  header_name: "Authorization"
+  header_type: "Bearer"
+  secret_key: ${{ secrets.JWT_SIGNATURE }}
+
+database:
+  user: "admin"
+  password: ${{ secrets.DB_PASSWORD }}
+  host: ${{ secrets.DB_HOST }}
+  port: 3306
+  name: "database-1"

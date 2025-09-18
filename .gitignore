@@ -64,5 +64,3 @@ coverage.xml
 # PyBuilder
 target/
 
-#my
-config.py
