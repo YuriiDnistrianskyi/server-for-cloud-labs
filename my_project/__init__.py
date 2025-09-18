@@ -4,11 +4,13 @@ from sqlalchemy_utils import database_exists, create_database
 from flask_jwt_extended import JWTManager
 from config import Config
 from flasgger import Swagger
+import pymysql
 
 from my_project.auth.route import register_routes
 from my_project.additional_for_db.additional_for_db import create_triggers, create_procedures, create_functions
 
 db = SQLAlchemy()
+pymysql.install_as_MySQLdb()
 
 def create_app() -> Flask:
     app = Flask(__name__)
