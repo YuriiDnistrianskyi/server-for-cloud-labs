@@ -22,5 +22,6 @@ jobs:
           script: |
             cd /home/ubuntu/server-for-cloud-labs
             git pull origin main
-            sudo systemctl restart 
+            pkill -f "python3.*app.py" || true
+            nohup python app.py
             echo "git deploy"
