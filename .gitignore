@@ -64,3 +64,5 @@ coverage.xml
 # PyBuilder
 target/
 
+#my
+my.py
