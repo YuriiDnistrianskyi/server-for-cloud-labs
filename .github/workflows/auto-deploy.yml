@@ -24,4 +24,3 @@ jobs:
             git pull origin main
             pkill -f "python3.*app.py" || true
             nohup python app.py > app.log 2>&1 &
-            echo "git deploy"
