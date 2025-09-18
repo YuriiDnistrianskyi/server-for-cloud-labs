@@ -24,4 +24,3 @@ jods:
             git pull origin main
             sudo systemctl restart 
             echo "git deploy"
-            
