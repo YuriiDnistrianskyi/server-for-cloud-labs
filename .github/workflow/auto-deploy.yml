@@ -5,16 +5,16 @@ on:
     branches:
       - main
 
-jods:
+jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        user: actions/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Deploy
-        user: appleboy/ssh-action@v0.1.10
+        uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.EC2_HOST}}
           username: ${{ secrets.EC2_USER}}
