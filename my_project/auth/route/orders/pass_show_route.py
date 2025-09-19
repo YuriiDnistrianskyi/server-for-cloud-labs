@@ -1,11 +1,13 @@
 from http import HTTPStatus
 from flask import Blueprint, jsonify, Response, request, make_response
+from flask_jwt_extended import jwt_required
 from my_project.auth.controller import pass_show_controller
 from my_project.auth.domain.orders.pass_show import PassShow
 
 pass_show_bp = Blueprint('PassShow', __name__, url_prefix='/pass_show')
 
 @pass_show_bp.get('')
+@jwt_required()
 def get_all_pass_shows() -> Response:
     pass_shows = pass_show_controller.find_all()
     pass_show_dto = [pass_show.put_into_dto() for pass_show in pass_shows]
@@ -13,6 +15,7 @@ def get_all_pass_shows() -> Response:
 
 
 @pass_show_bp.post('')
+@jwt_required()
 def create_pass_show() -> Response:
     data = request.get_json()
     pass_show = PassShow.create_from_dto(data)
@@ -21,12 +24,14 @@ def create_pass_show() -> Response:
 
 
 @pass_show_bp.get('/<int:pass_id>/<int:show_id>')
+@jwt_required()
 def get_pass_show(pass_id: int, show_id: int) -> Response:
     pass_show = pass_show_controller.find_pass_show_by_two_id(pass_id, show_id)
     return make_response(jsonify(pass_show.put_into_dto()), HTTPStatus.OK)
 
 
 @pass_show_bp.put('/<int:pass_id>/<int:show_id>')
+@jwt_required()
 def update_pass_show(pass_id: int, show_id: int) -> Response:
     data = request.get_json()
     pass_show = PassShow.create_from_dto(data)
@@ -35,6 +40,7 @@ def update_pass_show(pass_id: int, show_id: int) -> Response:
 
 
 @pass_show_bp.delete('/<int:pass_id>/<int:show_id>')
+@jwt_required()
 def delete_pass_show(pass_id: int, show_id: int) -> Response:
     pass_show_controller.delete_pass_show(pass_id, show_id)
     return make_response(jsonify({"message": "PassShow deleted"}), HTTPStatus.OK)

@@ -9,7 +9,6 @@ auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 def login() -> Response:
     data = request.get_json()
     park = Park.query.filter_by(name=data["name"]).first()
-    print("Ok")
     if park is not None and park.password == data['password']:
         access_token = create_access_token(identity=str(park.id))
         return make_response(jsonify({'access_token': access_token}), HTTPStatus.OK)

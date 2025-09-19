@@ -1,11 +1,13 @@
 from http import HTTPStatus
 from flask import Blueprint, jsonify, Response, request, make_response
+from flask_jwt_extended import jwt_required
 from my_project.auth.controller import park_controller
 from my_project.auth.domain.orders.Park import Park
 
 park_bp = Blueprint('park', __name__, url_prefix='/park')
 
 @park_bp.get('')
+@jwt_required()
 def get_all_parks() -> Response:
     park = park_controller.find_all()
     park_dto = [park.put_into_dto() for park in park]
@@ -74,6 +76,7 @@ def create_park() -> Response:
 
 
 @park_bp.post('/params')
+@jwt_required()
 def create_by_params() -> Response:
     data = request.get_json()
     park_controller.create_by_params(data)
@@ -81,6 +84,7 @@ def create_by_params() -> Response:
 
 
 @park_bp.get('/<int:park_id>')
+@jwt_required()
 def get_park(park_id: int) -> Response:
     park = park_controller.find_by_id(park_id)
     if park:
@@ -89,6 +93,7 @@ def get_park(park_id: int) -> Response:
 
 
 @park_bp.put('/<int:park_id>')
+@jwt_required()
 def update_park(park_id: int) -> Response:
     data = request.get_json()
     park = Park.create_from_dto(data)
@@ -97,11 +102,13 @@ def update_park(park_id: int) -> Response:
 
 
 @park_bp.delete('/<int:park_id>')
+@jwt_required()
 def delete_park(park_id: int) -> Response:
     park_controller.delete_park(park_id)
     return make_response(jsonify({"messange": "Park deleted"}), HTTPStatus.OK)
 
 @park_bp.get('/name/<string:name>')
+@jwt_required()
 def get_park_by_name(name: str) -> Response:
     parks = park_controller.find_by_name(name)
     if parks:
@@ -109,6 +116,7 @@ def get_park_by_name(name: str) -> Response:
     return make_response(jsonify({"error": "Park not found"}), HTTPStatus.NOT_FOUND)
 
 @park_bp.get('/location/<string:location>')
+@jwt_required()
 def get_park_by_location(location: str) -> Response:
     parks = park_controller.find_by_location(location)
     if parks:
