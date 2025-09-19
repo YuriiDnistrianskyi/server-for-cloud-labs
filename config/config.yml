@@ -1,9 +1,0 @@
-jwt:
-  token_location: ["headers"]
-  header_name: "Authorization"
-  header_type: "Bearer"
-
-database:
-  user: "admin"
-  port: 3306
-  name: "database-1"
