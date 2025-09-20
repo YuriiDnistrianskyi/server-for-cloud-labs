@@ -22,5 +22,4 @@ jobs:
           script: |
             cd /home/ubuntu/server-for-cloud-labs
             git pull origin main
-            pkill -f "python3.*app.py" || true
             echo "Update code"
