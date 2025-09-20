@@ -8,8 +8,6 @@ from my_project import create_app
 # FLASK_ENV = "FLASK_ENV"
 # ADDITIONAL_CONFIG = "ADDITIONAL_CONFIG"
 
-#test
-
 if __name__ == '__main__':
     app = create_app()
     app.run(host="0.0.0.0", port=5000, debug=True)
