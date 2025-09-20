@@ -22,7 +22,3 @@ jobs:
           script: |
             cd /home/ubuntu/server-for-cloud-labs
             git pull origin main
-            pkill -f "python3.*app.py" || true
-            sleep 10
-            nohup python3 app.py > app.log 2>&1 &
-            exit 0
