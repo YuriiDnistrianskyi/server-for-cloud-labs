@@ -22,4 +22,6 @@ jobs:
           script: |
             cd /home/ubuntu/server-for-cloud-labs
             git pull origin main
-            echo "Update code"
+            pkill -f "python3.*app.py" || :
+            nohup python3 app.py > app.log 2>&1 &
+            disown
