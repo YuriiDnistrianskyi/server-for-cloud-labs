@@ -7,6 +7,7 @@ from my_project import create_app
 # PRODUCTION = "production"
 # FLASK_ENV = "FLASK_ENV"
 # ADDITIONAL_CONFIG = "ADDITIONAL_CONFIG"
+#test
 
 if __name__ == '__main__':
     app = create_app()
