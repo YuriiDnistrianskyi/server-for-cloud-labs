@@ -22,6 +22,11 @@ jobs:
           script: |
             cd /home/ubuntu/server-for-cloud-labs
             git pull origin main
-            pkill -f "python3.*app.py" || :
+            
+            if pgrep -fl "python3.*app.py" > /dev/null; then
+              pkill -f "python3.*app.py"
+              echo "Old process stopped"
+            else
+              echo "No process running"
             nohup python3 app.py > app.log 2>&1 &
             disown
