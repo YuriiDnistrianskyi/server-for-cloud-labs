@@ -11,5 +11,4 @@ class Config:
     DB_HOST = db_host
     DB_PORT = 3306
     DB_NAME = "database-1"
-    # SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
-    SQLALCHEMY_DATABASE_URI = "mysql://root:RTXSQl__23!sQl@127.0.0.1:3306/labWork5_2"
+    SQLALCHEMY_DATABASE_URI = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
