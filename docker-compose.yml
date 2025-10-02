@@ -7,24 +7,9 @@ services:
       - "5000:5000"
     environment:
       FLASK_ENV: development
-      DB_USER: root
-      DB_HOST: db #${DB_HOST}
+      DB_USER: admin
+      DB_HOST: ${DB_HOST}
+      DB_PASSWORD: ${DB_PASSWORD}
       DB_PORT: 3306
-      DB_NAME: database-1
+      DB_NAME: my-sql-container
       JWT_SECRET_KEY: ${JWT_SECRET_KEY}
-    depends_on:
-      - db
-
-  db:
-    image: mysql:8
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-      MYSQL_DATABASE: database-1
-    ports:
-      - "3307:3306"
-    volumes:
-      - db_data:/var/lib/mysql
-
-volumes:
-  db_data:
