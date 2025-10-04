@@ -7,7 +7,6 @@ from my_project.auth.domain.orders.Park import Park
 park_bp = Blueprint('park', __name__, url_prefix='/park')
 
 @park_bp.get('')
-@jwt_required()
 def get_all_parks() -> Response:
     """
         Get All Parks
