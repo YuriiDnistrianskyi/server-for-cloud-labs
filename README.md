@@ -7,3 +7,4 @@ Laboratory tasks -> https://github.com/LPNU-IoT/cloud_labs_2025
 
 2. The for-cloud-lab-2 branch is the second lab work -> https://github.com/YuriiDnistrianskyi/server-for-cloud-labs/tree/for-cloud-lab-2
 
+3. The simulator-IoT-devices repository is the third lab work-> https://github.com/YuriiDnistrianskyi/simulator-IoT-devices
